@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Palavras</title>
+	<meta charset="utf-8"/>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<style type="text/css">
+		.main{
+		width:500px;
+		height:400px;
+		margin:0 auto;
+		text-align:center;
+		}
+		#texto{
+			border-radius:5px;
+			box-sizing:border-box;
+			font-size:2em;
+			}
+			span{
+				font-size:2em;
+				display:block;
+				margin-bottom:5px;
+			}
+			#bt{
+				font-size:2em;
+				border-radius:20px;
+				border-color:black;
+			}
+	</style>
+</head>
+
+<body>
+	<div class="main">
+		<textarea id="texto" placeholder="Digite aqui o seu texto" maxlength="140"></textarea>
+		<span id="num-caracc"></span>
+		<span id="num-caracs"></span>
+		<span id="num-pal"></span>
+		<button id="bt">Palavra mais escrita</button>
+		<span id="comum"></span>
+	</div>
+</body>
+</html>
