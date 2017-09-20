@@ -1,0 +1,99 @@
+<html>
+	<head>
+		<link rel ="stylesheet" type="text/css" href="./css/index.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+		<script src="./js/jquery.min.js"> </script>
+		<script src="./js/filmes.js"> </script>
+		<script>
+		$(function(){	
+			var altura = $(window).innerHeight();
+			$("#body").css("top","bottom",altura);
+			var largura = $(window).innerWidth();
+			$("#body").css("left", "right",largura);
+					
+			function escolher (vetor,objID){
+				var objescolhido;
+				$.each(vetor,function(indice, objeto){
+					if(objeto.id==objID){
+					objescolhido=objeto;
+					}
+				});
+				console.log(objescolhido);
+				return objescolhido;
+			}
+			
+			 $("#botao").click(function(){
+			$("#filmes").show("fast");
+			});	
+				
+			$.each(filmes, function(indice, objeto){
+				$("#filmes").append(
+				$("<li />").text(objeto.titulo).addClass("li-titulo").attr("id",objeto.id)
+				);
+			});
+				
+			$("#filmes").on("click","li", function(){
+				$("p, h2, img, h4, li").remove("#filmes");
+				var texto=escolher(filmes,$(this).attr("id"));
+				var $opiniao=$("<ul />");
+				var $seme=$("<ul />");
+				$.each(texto.titulosSemelhantes, function(i, tituloId){
+					$.each(filmes, function(i,titulosemelhante){
+						if(tituloId==titulosemelhante.id){
+							$seme.append($("<li />").text(titulosemelhante.titulo)).addClass("titulosSemelhantes");
+						}
+					})
+				});
+				
+				$.each(texto.opinioes, function(i,obj){
+					for ($i=0; $i< obj.rating; $i++){
+						$opiniao.append($("<i />").addClass("fa fa-star estrelas"));
+					}	
+					$opiniao.append($("<li />").text(obj.descricao).addClass("comentario"));
+				});
+				
+				if(texto.classificacao==0){
+					var classificacao= "livre.png";
+				}
+				else if(texto.classificacao==10){
+					var classificacao="10.png";
+				}
+				else if(texto.classificacao==12){
+					var classificacao="12.png";
+				}
+				else if(texto.classificacao==14){
+					var classificacao="14.png";
+				}
+				else if(texto.classificacao==16){
+					var classificacao="16.png";
+				}
+				else if(texto.classificacao==18){
+					var classificacao="18.png";
+				}
+				
+				$(".fechar").html('<ul id="filmes"></ul>');
+					$(".fechar").append($("<img />").attr("src",texto.figura).addClass("imagem"))
+						.append($("<p />").text(texto.resumo).addClass("resumo"))
+						.append($("<h6 />").text(texto.generos).addClass("genero"))
+						.append($("<p />").text(texto.elenco).addClass("elenco"))
+						.append($("<img />").attr("src",classificacao).addClass("classificacao"))
+						.append($("<h4 />").text("Títulos semelhantes").addClass("chamada-titulosSemelhantes")).append($seme)
+						.append($opiniao).text(texto.descricao)
+						.append($opiniao).text(texto.avaliacao);	
+				});
+				
+		})
+		</script>
+	</head>
+	<body id="body">
+		<h1> CEFETFLIX </h1>
+		<button id="botao"> LISTA DE FILMES <i class="fa fa-hand-o-right" aria-hidden="true"></i> </button>
+		<div class="principal">
+			<ul id="filmes">
+			
+			</ul>
+			<div class="fechar"> </div>
+		</div>
+	</body>
+</html>

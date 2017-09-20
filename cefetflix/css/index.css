@@ -1,0 +1,85 @@
+*{
+	margin:0;
+	padding:0;
+}
+h1{
+	color:#ADFF2F;
+}
+body{
+	background-image:url("background.jpg"); 
+	background-size:cover;
+	box-sizing:border-box;
+	background-repeat: no-repeat;
+font-family: 'Roboto Slab', serif;
+}
+#filmes{
+		display:none;
+		margin-bottom:10px;
+		background-color:#ADFF2F;
+}
+.principal{
+	background-color:rgba(232, 234, 229, 0.3);
+	margin-top:10px;
+	text-align:center;
+	box-sizing:border-box;
+	background-size:cover;
+	
+}
+.li-titulo{
+	font-size:14px;
+	display:inline;
+	margin-left:5px;
+	margin-right:5px;
+}
+h1{
+	font-size:4em;
+	width:400px;
+	margin:0 auto;
+}
+#botao{
+	width:400px;
+	margin-left:50px;
+	margin-top:30px;
+	padding:4px;
+	background-color:#ADFF2F;
+	border-color:#ADFF2F;
+	font-weight:bolder;
+
+}
+#botao:hover{
+	background-color:#9ACD32;
+	border-color:#9ACD32;
+	cursor:pointer;
+}
+.li-titulo:hover{
+	background-color:#9ACD32;
+	cursor:pointer;
+}
+.imagem{
+	width:500px;
+}
+.resumo{
+	font-size:2em;
+}
+.genero{
+	font-size:1em;
+}
+.elenco{
+	font-size:1em;
+}
+.chamada-titulosSemelhantes{
+	font-size:2em;
+}
+.titulosSemelhantes{
+	font-size:2em;
+}
+.comentario{
+	margin-bottom:10px;
+}
+.estrelas{
+	margin-top:5px;
+	color:#FFD700;
+}
+.classificacao{
+	width:50px;
+}
