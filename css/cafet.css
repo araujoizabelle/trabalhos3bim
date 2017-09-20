@@ -1,0 +1,52 @@
+body{
+	background-image: url(../img/background.jpg);
+	background-repeat:repeat;
+	font-family: 'Raleway', sans-serif;
+}
+.form{
+	background-color:rgba(240, 128, 128, 0.7);
+	width:200px;
+	height:150px;
+	text-align:center;
+	padding-top:20px;
+	border-radius:50px;
+	float:right;
+	margin-right:30px;
+}
+.tabela-produtos{
+	background-color:rgba(240, 128, 128, 0.7);
+	width:400px;
+	height:500px;
+	border-radius:20px;
+	font-weight:700;
+	text-align:center;
+}
+.tabela-pedido{
+	border-radius:20px;
+	background-color:rgba(240, 128, 128, 0.7);
+	width:300px;
+	height:100px;
+	margin-left:400px;
+	text-align:center;
+	font-weight:700;
+}
+.adicionar{
+	color:white;
+	background-color:rgb(240, 128, 128);
+	border-color:rgb(240, 128, 128);
+}
+.remover{
+	color:white;
+	background-color:rgb(240, 128, 128);
+	border-color:rgb(240, 128, 128);
+}
+#cadastrar{
+	margin-top:5px;
+	color:white;
+	background-color:rgb(240, 128, 128);
+	border-color:rgb(240, 128, 128);
+}
+#logo{
+	width:100px;
+	margin-left:90%;
+}

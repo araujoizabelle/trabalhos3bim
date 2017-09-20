@@ -1,0 +1,15 @@
+var produtos = [
+    {"id":1,nome:"Expresso",preco:4.00},
+    {"id":2,nome:"Cappuccino",preco:5.00},
+    {"id":3,nome:"Clássicos com café",preco:7.00},
+    {"id":4,nome:"Refreshers",preco:5.00},
+    {"id":5,nome:"Chá",preco:3.00},
+    {"id":6,nome:"Chocolate",preco:4.00},
+    {"id":7,nome:"Frappuccino à base de café",preco:8.00},
+    {"id":8,nome:"Frappuccino à base de creme",preco:8.00},
+    {"id":9,nome:"Cheesecake",preco:7.00},
+    {"id":10,nome:"Cookie",preco:6.00},
+    {"id":11,nome:"Muffin",preco:8.00},
+    {"id":12,nome:"Brownie ",preco:4.00},
+    {"id":13,nome:"Donuts",preco:5.00},
+];

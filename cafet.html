@@ -1,0 +1,179 @@
+<!doctype>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="./css/cafet.css">
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/produtos.js"></script>
+		<script src="./js/pedido.js"></script>
+		<script>
+		
+		function pilotarCardapio(produtos){
+		$('.produto').html('');
+			$.each(produtos,function(idx,produto){
+				$('.produto')
+				.append("<tr><td>"+produto.nome+"</td><td>"+produto.preco+"</td><td>"+ "<button id=\"prod_"+produto.id+"\"class=\"adicionar\">+</button></td></tr>");
+			});
+		}
+		
+		function existeProdutoPedido(pedido,produto){
+			var existeItem = false;
+			$.each(pedido, function(indice, item){
+				if(item.produto.id == produto.id) {
+					existeItem = indice;
+					return null;
+				}
+			});
+			return existeItem;
+		}
+		function pilotarPedido(pedido){
+		$('.pedido').html('');
+			var precoTotal = 0;
+			$.each(pedido,function(ind,item){
+				$('.pedido')
+				.append("<tr><td>"+item.quantidade+"</td><td>"+item.produto.nome+"</td><td>"+"</td><td>"+item.produto.preco+"<button id=\"item_"+item.produto.id+"\"class=\"remover\">-</button></td></tr>");
+				precoTotal += (item.quantidade * item.produto.preco);
+			});
+			$("#precoTotal").text(precoTotal);
+		}
+		function adicionarProdutoNoPedido(pedido,produto){
+		var verificar= existeProdutoPedido(pedido,produto);
+		if(verificar===false)
+		{
+			pedido.push({produto:produto,quantidade:1});
+		}
+		else
+		{
+			pedido[verificar].quantidade++;
+		}
+			pilotarPedido(pedido);
+		}
+		function removerProduto(produto){
+		var pegarIndice= existeProdutoPedido(pedido,produto);
+		if(pedido[pegarIndice].quantidade>1)
+		{
+		pedido[pegarIndice].quantidade--;
+		}
+		else
+		{
+		pedido.splice(pegarIndice, 1);
+		}
+		pilotarPedido(pedido);
+		}
+		
+		function prodporid(id){
+				var retorno=null;
+				$.each(produtos,function(indice,produto){
+					if(id==produto.id)
+					{
+						retorno=produto;
+					}
+				});
+				return retorno;
+		}
+			
+		function progbtnadicionar(){
+		$(document).on('click','.adicionar',function (){
+		var id=$(this).attr('id');/*this.attr pega um atrbuto qualquer do objeto atual*/
+		var id= id.split("_")[1];
+		var produto= prodporid(id);
+		adicionarProdutoNoPedido(pedido,produto);
+		});
+		}
+		
+		function progbtnremover(){
+		$(document).on('click','.remover',function (){
+		var id=$(this).attr('id');/*this.attr pega um atrbuto qualquer do objeto atual*/
+		var id= id.split("_")[1];
+		var produto= prodporid(id);
+		removerProduto(produto);
+		});
+		}
+		function existeProdutoCardapio(produtos,produto){
+			var existeItem = false;
+			$.each(produtos, function(indice, prod){
+				if(prod.nome == produto.nome) {
+					existeItem = indice;
+					return null;
+				}
+			});
+			return existeItem;
+		}
+		function adicionarProdutoNoCardapio(produtos,produto){
+		var verificar= existeProdutoCardapio(produtos,produto);
+		if(verificar===false)
+		{
+			produtos.push(produto);
+		}
+			pilotarCardapio(produtos);
+		}
+		function addnocardapio(){
+		$('#ok').click(function(){
+		var id=produtos[produtos.length-1].id+1;
+		var nome=$('#nome').val();
+		var preco=$('#preco').val();
+		var objetoP={id:id,nome:nome,preco:preco};
+		adicionarProdutoNoCardapio(produtos,objetoP);
+		});
+		}
+	
+		$(function(){
+		var altura = $(window).innerHeight();
+			$("#body").css("top",altura);
+			var largura = $(window).innerWidth();
+			$("#body").css("left", "right",largura);
+		
+		//adicionarProdutoNoPedido(pedido,{"id":1,nome:"Expresso",preco:4.00});
+		console.log(pedido);
+		pilotarCardapio(produtos);
+		progbtnadicionar();
+		progbtnremover();
+		addnocardapio();
+		
+		});
+		
+			
+		</script>
+	</head>
+<body>
+	<div class="form">
+			Nome do Produto<br>
+			<input id="nome" type="text" name="nomeprod"><br>
+				Preço do produto<br>
+				<input id="preco" type="text" name="precoprod">
+				<button id='cadastrar' >adicionar</button>
+	</div>
+	<table class="tabela-produtos" >
+		<thead>
+			<tr>
+				<th>Nomes</th>
+				<th id="th-precos">Preços</th>
+				<th></th>
+			</tr>		
+		</thead>
+		<tbody class="produto">
+		</tbody>	
+	</table>
+
+	<table class="tabela-pedido">
+		<thead>
+			<tr>
+				<th>Quantidade</th>
+				<th>  Produto</th>
+				<th>Preço Unitário</th>
+				<th></th>
+			</tr>		
+		</thead>
+	<tbody class="pedido">
+	</tbody>
+	<tfoot>
+		<tr>
+			<th> total </th>
+			<th id="precoTotal"></th>
+		</tr>
+	</tfoot>
+	</table>
+<img src="./img/logo.png" id="logo"/>
+</body>
+	</html>
